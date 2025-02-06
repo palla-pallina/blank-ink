@@ -17,6 +17,7 @@ MySQL, PHP, HTML/CSS/JavaScript
 
 ## 2.2 Tables and Relationships
 
+
 ### 2.2.1 User Table
 
 ```
@@ -32,7 +33,7 @@ CREATE TABLE User (
 
 - Primary Key: user_id
 - Foreign Keys: None
-- Relationships: Each user can have multiple uploaded content (artwork, event and auction).
+- Relationships: Each user can upload multiple varieties of content (artwork, event, job match and commission list).
 
 ### 2.2.2 Artwork Table
 
@@ -43,7 +44,7 @@ CREATE TABLE Artwork (
     art_categ_id INT,
     art_name VARCHAR(100) NOT NULL,
     art_desc TEXT,
-    art_date_posted DATETIME NOT NULL,
+	date_posted DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (art_category_id) REFERENCES Artwork_Category(art_category_id)
 );
@@ -77,7 +78,7 @@ CREATE TABLE Event (
     event_desc TEXT NOT NULL,
     event_date VARCHAR(50) NOT NULL,
     event_time VARCHAR(50) NOT NULL,
-    event_date_posted DATETIME NOT NULL,
+	date_posted DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (event_categ_id) REFERENCES Event_Category(event_categ_id)
 );
@@ -96,7 +97,7 @@ CREATE TABLE Event_Category (
 );
 ```
 
-- Primary Key: e_category_id
+- Primary Key: event_categ_id
 - Foreign Keys: None
 - Relationships: Categories classify events.
 
@@ -109,14 +110,14 @@ CREATE TABLE Job_Matching (
 	jobmatch_type_id INT,
 	jobmatch_header VARCHAR(50),
 	jobmatch_desc TEXT,
-	jobmatch_posted DATETIME NOT NULL,
+	date_posted DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (jobmatch_type_id) REFERENCES Job_Matching_Type(jobmatch_type_id)
 );
 ```
 
-- Primary Key: jm_id
-- Foreign Keys: user_id (References User)
+- Primary Key: jobmatch_id
+- Foreign Keys: user_id (References User), jobmatch_type_id (References Job_Matching_Type)
 - Relationships: Each post is linked to a single user and each post belongs to a type.
 
 ### 2.2.7 Job Matching Type Table
@@ -129,46 +130,62 @@ CREATE TABLE Job_Matching_Type (
 
 - Primary Key: jobmatch_type_id
 - Foreign Keys: None
-- Relationships: Type categorizes the job matching post.
+- Relationships: Job match type categorizes the job matching post.
 
-### 2.2.8 Auction Listing Table
-
-```
-CREATE TABLE Auction_Listing (
-    auction_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    artwork_id INT,
-    auction_prog_id INT,
-    auction_name VARCHAR(100) NOT NULL,
-    auction_desc TEXT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(user_id),
-    FOREIGN KEY (category_id) REFERENCES Artwork_Categories(category_id),
-    FOREIGN KEY (auction_prog_id) REFERENCES Auction_Progress(auction_prog_id)
-)
-```
-
-- Primary Key: auction_id
-- Foreign Keys: auction_prog_id (References Auction_Progress)
-- Relationships:  Each listing is linked to a single user and each listing is described on their progress.
-
-### 2.2.9 Auction Progress Table
+### 2.2.8 Commission Listing Table
 
 ```
-CREATE TABLE Auction_Progress (
-	auction_prog_id INT PRIMARY KEY AUTO_INCREMENT,
-    starting_bid DECIMAL(10,2) NOT NULL,
-    current_bid DECIMAL(10,2) DEFAULT NULL,
-    bid_increment DECIMAL(10,2) NOT NULL,
-    auction_start DATETIME NOT NULL,
-    auction_end DATETIME NOT NULL,
-    highest_bidder_id INT DEFAULT NULL,
-    status ENUM('Upcoming', 'Ongoing', 'Completed', 'Cancelled') NOT NULL DEFAULT 'Upcoming'
+CREATE TABLE Commission_Listing (
+	comm_list_id INT PRIMARY KEY AUTO_INCREMENT,
+	artist_id INT(10) UNIQUE NOT NULL,
+	user_id INT,
+	comm_name VARCHAR(100),
+	comm_desc TEXT,
+	comm_list_price DECIMAL(10,2) NOT NULL,
+	date_posted DATETIME NOT NULL,
+	status VARCHAR(5),
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 ```
 
-- Primary Key: auction_prog_id
-- Foreign Keys: None
-- Relationships: Auction progress describes the details of auction listings.
+- Primary Key: comm_list_id
+- Foreign Keys: user_id (References User)
+- Relationships: Each commission listing is linked to a single user.
+
+### 2.2.9 Commission Client Table
+
+```
+CREATE TABLE Commission_Client (
+	client_id INT PRIMARY KEY AUTO_INCREMENT,
+	comm_list_id INT(10) UNIQUE NOT NULL,
+	user_id INT,
+	contact_no VARCHAR(15) UNIQUE NOT NULL,
+	email VARCHAR(100) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+```
+
+- Primary Key: client_id
+- Foreign Keys: user_id (References User)
+- Relationships: Each commission client is linked to a single user.
+
+### 2.2.10 Commission Order Table
+
+```
+CREATE TABLE Commission_Client (
+	comm_order_id INT PRIMARY KEY AUTO_INCREMENT,
+	client_id INT,
+	comm_list_id INT,
+	total_price DECIMAL(10,2) NOT NULL,
+	date_ordered DATETIME NOT NULL,
+    FOREIGN KEY (client_id) REFERENCES Commission_Client(client_id),
+    FOREIGN KEY (comm_list_id) REFERENCES Commission_Listing(comm_list_id)
+);
+```
+
+- Primary Key: comm_order_id
+- Foreign Keys: client_id (references Commission_Client), comm_list_id INT (references)
+- Relationships: Each commission order has a client and is linked to a commission listing.
 
 ---
 
