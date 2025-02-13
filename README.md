@@ -15,8 +15,8 @@
 - [ ] Entity-Relationship Diagram (ERD)
 - [ ] Project Documentation
 - Weekly Accomplishment Report
-	- [ ] Week 1 (Feb 6)
-	- [ ] Week 2 (Feb 10)
+	- [/] Week 1 (Feb 6)
+	- [/] Week 2 (Feb 10)
 	- [ ] **Final Presentation** (Feb 17)
 
 ---
