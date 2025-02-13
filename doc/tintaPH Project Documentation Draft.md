@@ -35,26 +35,7 @@ CREATE TABLE User (
 - Foreign Keys: None
 - Relationships: Each user can upload multiple varieties of content (artwork, event, job match and commission list).
 
-### 2.2.2 Artwork Table
-
-```
-CREATE TABLE Artwork (
-    art_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    art_categ_id INT,
-    art_name VARCHAR(100) NOT NULL,
-    art_desc TEXT,
-	date_posted DATETIME NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(user_id),
-    FOREIGN KEY (art_category_id) REFERENCES Artwork_Category(art_category_id)
-);
-```
-
-- Primary Key: artwork_id
-- Foreign Key: user_id (References User), art_categ_id (References Artwork_Category)
-- Relationships: Each artwork is linked to a single user and each artwork belongs to a category.
-
-### 2.2.3 Artwork Category Table
+### 2.2.2 Artwork Category Table
 
 ```
 CREATE TABLE Artwork_Category (
@@ -67,7 +48,25 @@ CREATE TABLE Artwork_Category (
 - Foreign Keys: None
 - Relationships: Categories classify artworks.
 
-### 2.2.4 Event Table
+### 2.2.2 Artwork Table
+
+```
+CREATE TABLE Artwork (
+    art_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    art_categ_id INT,
+    art_name VARCHAR(100) NOT NULL,
+    art_desc TEXT,
+	date_posted DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+```
+
+- Primary Key: artwork_id
+- Foreign Key: user_id (References User), art_categ_id (References Artwork_Category)
+- Relationships: Each artwork is linked to a single user and each artwork belongs to a category.
+
+### 2.2.3 Event Table
 
 ```
 CREATE TABLE Event (
