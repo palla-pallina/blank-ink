@@ -17,7 +17,6 @@ MySQL, PHP, HTML/CSS/JavaScript
 
 ## 2.2 Tables and Relationships
 
-
 ### 2.2.1 User Table
 
 ```
@@ -48,7 +47,7 @@ CREATE TABLE Artwork_Category (
 - Foreign Keys: None
 - Relationships: Categories classify artworks.
 
-### 2.2.2 Artwork Table
+### 2.2.3 Artwork Table
 
 ```
 CREATE TABLE Artwork (
@@ -66,7 +65,21 @@ CREATE TABLE Artwork (
 - Foreign Key: user_id (References User), art_categ_id (References Artwork_Category)
 - Relationships: Each artwork is linked to a single user and each artwork belongs to a category.
 
-### 2.2.3 Event Table
+### 2.2.4 Event Category Table
+
+```
+CREATE TABLE Event_Category (
+    event_categ_id INT PRIMARY KEY AUTO_INCREMENT,
+    event_categ_name VARCHAR(100) UNIQUE NOT NULL
+);
+```
+
+- Primary Key: event_categ_id
+- Foreign Keys: None
+- Relationships: Categories classify events.
+
+
+### 2.2.5 Event Table
 
 ```
 CREATE TABLE Event (
@@ -87,20 +100,19 @@ CREATE TABLE Event (
 - Foreign Keys: user_id (References User), event_categ_id (References Event_Category)
 - Relationships: Each event is linked to a single user and each event belongs to a category.
 
-### 2.2.5 Event Category Table
-
+### 2.2.6 Job Matching Type Table
 ```
-CREATE TABLE Event_Category (
-    event_categ_id INT PRIMARY KEY AUTO_INCREMENT,
-    event_categ_name VARCHAR(100) UNIQUE NOT NULL
+CREATE TABLE Job_Matching_Type (
+    jobmatch_type_id INT PRIMARY KEY AUTO_INCREMENT,
+    jobmatch_type_name VARCHAR(100) UNIQUE NOT NULL
 );
 ```
 
-- Primary Key: event_categ_id
+- Primary Key: jobmatch_type_id
 - Foreign Keys: None
-- Relationships: Categories classify events.
+- Relationships: Job match type categorizes the job matching post.
 
-### 2.2.6 Job Matching Table
+### 2.2.7 Job Matching Table
 
 ```
 CREATE TABLE Job_Matching (
@@ -118,18 +130,6 @@ CREATE TABLE Job_Matching (
 - Primary Key: jobmatch_id
 - Foreign Keys: user_id (References User), jobmatch_type_id (References Job_Matching_Type)
 - Relationships: Each post is linked to a single user and each post belongs to a type.
-
-### 2.2.7 Job Matching Type Table
-```
-CREATE TABLE Job_Matching_Type (
-    jobmatch_type_id INT PRIMARY KEY AUTO_INCREMENT,
-    jobmatch_type_name VARCHAR(100) UNIQUE NOT NULL
-);
-```
-
-- Primary Key: jobmatch_type_id
-- Foreign Keys: None
-- Relationships: Job match type categorizes the job matching post.
 
 ### 2.2.8 Commission Listing Table
 
