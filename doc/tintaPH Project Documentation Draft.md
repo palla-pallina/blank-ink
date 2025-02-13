@@ -58,6 +58,7 @@ CREATE TABLE Artwork (
     art_desc TEXT,
 	date_posted DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES User(user_id)
+    FOREIGN KEY (art_categ_id) REFERENCES Artwork_Category(art_categ_id)
 );
 ```
 
