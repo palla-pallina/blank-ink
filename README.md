@@ -32,4 +32,4 @@ tintaPH is a Filipino-centric art social media website that provides a centraliz
 	- Artwork
 	- Events
 	- Job Matching (e.g, "Looking for work" and "Looking for artist" forum)
-- Auction Hosting
+- Commission Hosting
