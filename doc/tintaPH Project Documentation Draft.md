@@ -22,6 +22,7 @@ MySQL, PHP, HTML/CSS/JavaScript
 ```
 CREATE TABLE User (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_type VARCHAR(10) NOT NULL,
     user_name VARCHAR(50) UNIQUE NOT NULL,
     user_password VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -57,7 +58,7 @@ CREATE TABLE Artwork (
     art_name VARCHAR(100) NOT NULL,
     art_desc TEXT,
 	date_posted DATETIME NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(user_id)
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (art_categ_id) REFERENCES Artwork_Category(art_categ_id)
 );
 ```
@@ -172,7 +173,7 @@ CREATE TABLE Commission_Client (
 ### 2.2.10 Commission Order Table
 
 ```
-CREATE TABLE Commission_Client (
+CREATE TABLE Commission_Order (
 	comm_order_id INT PRIMARY KEY AUTO_INCREMENT,
 	client_id INT,
 	comm_list_id INT,
