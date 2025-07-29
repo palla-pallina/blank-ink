@@ -11,13 +11,13 @@
 
 ### Deliverables
 
-- [ ] Functioning PHP Website
-- [ ] Entity-Relationship Diagram (ERD)
-- [ ] Project Documentation
+- [x] Functioning PHP Website
+- [x] Entity-Relationship Diagram (ERD)
+- [x] Project Documentation
 - Weekly Accomplishment Report
 	- [x] Week 1 (Feb 6)
 	- [x] Week 2 (Feb 10)
-	- [ ] **Final Presentation** (Feb 17)
+	- [x] **Final Presentation** (Feb 17)
 
 ---
 
