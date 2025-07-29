@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<head>
+    <title></title>
+    <style>
+        .navbar {
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .navbar-logo {
+            margin: 5px 0 5px 40px;
+        }
+
+        .navbar-links {
+            list-style: none;
+            position: fixed;
+            right: 168px;
+            top: 21.8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            gap: 41.4px;
+        }
+
+        .navbar-links a {
+            background-color: #f8f8f8;
+            text-decoration: none;
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+            border-radius: 5px;
+        }
+
+        .nav-links {
+            cursor: pointer;
+            padding: 5px;
+            position: relative;
+        }
+        .nav-links::after {
+            content: '';
+            width: 0%;
+            height: 5px;
+            background: #ff66b2;
+            position: absolute;
+            left: 0;
+            bottom: -16px;
+            transition: width 0.5s;
+        }
+        .nav-links:hover::after,
+        .nav-links.active-link::after {
+            width: 100%;
+        }
+
+
+        .link-icons {
+            text-decoration: none;
+            display: flex;
+            position: fixed;
+            right: 0;
+            margin-right: 27px;
+            gap: 20px;
+        }
+
+        .user-icon {
+            text-decoration: none;
+            width: 50px; 
+            margin-top: 2px;
+        }
+
+        .upl-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ff6b6b;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-top: 5px;
+            margin-right: 1px;
+        }
+
+
+        /* Responsive Navbar for Smaller Screens */
+        @media screen and (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .navbar-links a {
+                display: block;
+                padding: 10px;
+            }
+
+            .link-icons {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        /* Dropdown Menu Styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            min-width: 150px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: 1000;
+            list-style: none;
+            padding: 5px 0;
+        }
+
+        .dropdown-menu li {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .dropdown-menu li a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            padding: 8px 12px;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f4f4f4;
+        }
+
+        /* Show dropdown on hover */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="navbar-logo">
+                <a href="#">
+                    <img src="../stylesheets/assets/header-logo.svg" class="nav-log" alt="logo" style="width:40px;">
+                </a>
+            </div>
+    
+            <!-- NAVBAR SCRIPT -->
+            <script>
+                function opentab(event, navname) {
+                    for (let tab of navlinks) {
+                        tab.classList.remove("active-link");
+                    }
+                }
+            </script>
+    
+            <div class="links-wrapper">
+                <ul class="navbar-links">
+
+                    <li class="dropdown">
+                        <a href="#"><img src="../stylesheets/assets/dotdot.svg" class="dotdot" alt="dotdot"></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="profile.php">Profile</a></li>
+                            <li><a href="settings.php">Settings</a></li>
+                            <li><a href="logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="homefeed.php" class="nav-links active-link" onclick="opentab(event, 'home')">Home</a></li>
+                    <li><a href="event.php" class="nav-links">Event</a></li>
+                    <li><a href="#" class="nav-links">Commission</a></li>
+                </ul>
+            </div>
+            <div class="link-icons">
+                    <li class="upload-btn nav-link" onclick="openModal()">
+                        <button type="button" class="upl-btn" style="font-family: 'Raleway', serif; font-size: 60px;">+</button>
+                    </li>
+                    <li>
+                        <a href="profile.php">
+                            <img src="../stylesheets/assets/usericon.svg" class="user-icon" alt="user">
+                        </a>
+                    </li>
+            </div>
+        </nav>
+</body>
+</html>
+

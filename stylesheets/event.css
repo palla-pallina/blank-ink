@@ -1,0 +1,384 @@
+html {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Cabin", sans-serif; 
+    background-color: #211e1e;
+    color: white;
+}
+
+.navbar1 {
+    width: 100%; /* Make navbar take up the full width */
+    height: 80px; /* Set the navbar height */
+    background-color: black; /* Navbar background color */
+    display: flex;
+    align-items: center; /* Vertically center the text */
+    padding: 0 20px; /* Padding to ensure the text doesn't touch the edges */
+    position: absolute;
+    left: 0;
+    width: 100%; 
+    height: 80px; 
+}
+
+/*
+|   NAVBAR
+*/ 
+
+.navbar {
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navbar-logo {
+    margin: 5px 0 5px 40px;
+}
+
+.navbar-links {
+    list-style: none;
+    position: fixed;
+    right: 168px;
+    top: 21.8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 41.4px;
+}
+
+.navbar-links a {
+    background-color: #f8f8f8;
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.nav-links {
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+}
+.nav-links::after {
+    content: '';
+    width: 0%;
+    height: 5px;
+    background: #ff66b2;
+    position: absolute;
+    left: 0;
+    bottom: -16px;
+    transition: width 0.5s;
+}
+.nav-links:hover::after,
+.nav-links.active-link::after {
+    width: 100%;
+}
+
+
+.link-icons {
+    text-decoration: none;
+    display: flex;
+    position: fixed;
+    right: 0;
+    margin-right: 27px;
+    gap: 20px;
+}
+
+.user-icon {
+    text-decoration: none;
+    width: 50px; 
+    margin-top: 2px;
+}
+
+.upl-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff6b6b;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-right: 1px;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar-links a {
+        display: block;
+        padding: 10px;
+    }
+
+    .link-icons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* 
+|   NAVBAR DROP DOWN MENU
+*/
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    min-width: 150px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+    list-style: none;
+    padding: 2px 0;
+}
+
+.dropdown-menu li {
+    text-align: left;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 8px 12px;
+    transition: background 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #cbcaca;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/*
+|   NAVBAR END
+*/ 
+
+
+/*
+|   DISPLAY EVENTS
+*/
+
+.text {
+    margin: 0 10px 0 10px;
+    color: #ff516b;
+    font-size: 24px;
+    font-weight: bold;
+    flex: 1;
+}
+
+.event-wrapper {
+    margin: 69px 10px 50px 22px;
+    padding-top: 65px;
+}
+
+.event-container {
+    display: grid;
+    gap: 35px;
+    padding: 64.6px;
+    max-width: none;
+}
+
+.container {
+    width: 90%; 
+    margin: 0 auto;
+}
+
+.event-post {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+    border-radius: 8px;
+}
+
+.event-post img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.event-info {
+    padding: 0 12px 0 12px;
+    font-size: 15px;
+    text-align: left;
+}
+
+p.event-des {
+    font-style: italic;
+}
+
+.event-info h2 {
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+.btn-like {
+    background: none;
+    border: none;
+    padding-bottom: 15px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-like:hover {
+    color: #ff6b6b;
+}
+
+
+/*
+|   UPLOAD
+*/
+  
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* Black with transparency */
+    padding-top: 20px;
+    overflow-y: auto; /* Enables scrolling */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: black;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 90vh; /* Restrict height */
+    overflow-y: auto; /* Scrollable if content exceeds */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #ff4d4d;
+}
+
+.upl-image input {
+    width: 50px;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Form Fields */
+.upload-form input,
+.upload-form select,
+.upload-form textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Textarea */
+.upload-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Labels */
+.upload-form label {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #ff6b6b; /* Coral color */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #ff5733; /* Darker coral */
+}
+
+/*
+| FOOTER
+*/
+
+.footer {
+    background-color: #000000;
+    color: rgb(236, 236, 236);
+    text-decoration: none;
+    position: absolute;
+    text-align: center;
+    padding: 7px;
+    left: 0;
+    width: 100%;
+}
+
+a.footer-link {
+    text-decoration:
+    none; color:white;
+}
+
+.footer a:hover{
+    color: #f94a4a;
+}

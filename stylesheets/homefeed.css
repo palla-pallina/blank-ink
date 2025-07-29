@@ -1,0 +1,508 @@
+/*
+|   TO DO
+|       -palitan yung events placeholder
+|       -functioning like button (kahit di nakakabit sa database)
+*/
+
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Cabin", sans-serif; 
+    background-color: #211e1e;
+    color: white;
+}
+
+/*
+|   NAVBAR
+*/ 
+
+.navbar {
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navbar-logo {
+    margin: 5px 0 5px 40px;
+}
+
+.navbar-links {
+    list-style: none;
+    position: fixed;
+    right: 168px;
+    top: 21.8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 41.4px;
+}
+
+.navbar-links a {
+    background-color: #f8f8f8;
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.nav-links {
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+}
+.nav-links::after {
+    content: '';
+    width: 0%;
+    height: 5px;
+    background: #ff66b2;
+    position: absolute;
+    left: 0;
+    bottom: -16px;
+    transition: width 0.5s;
+}
+.nav-links:hover::after,
+.nav-links.active-link::after {
+    width: 100%;
+}
+
+
+.link-icons {
+    text-decoration: none;
+    display: flex;
+    position: fixed;
+    right: 0;
+    margin-right: 27px;
+    gap: 20px;
+}
+
+.user-icon {
+    text-decoration: none;
+    width: 50px; 
+    margin-top: 2px;
+}
+
+.upl-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff6b6b;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-right: 1px;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar-links a {
+        display: block;
+        padding: 10px;
+    }
+
+    .link-icons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* 
+|   NAVBAR DROP DOWN MENU
+*/
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    min-width: 150px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+    list-style: none;
+    padding: 2px 0;
+}
+
+.dropdown-menu li {
+    text-align: left;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 8px 12px;
+    transition: background 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #cbcaca;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/*
+|   NAVBAR END
+*/ 
+
+
+/*
+|   FEATURED EVENTS
+*/ 
+
+.events-container {
+    margin: 46px 10px 0 10px;
+}
+
+.events-header {
+    margin-left: 12px;
+    margin-top: 90px;
+    font-family: "Raleway", serif;
+    color: #cdcdcd;
+    font-size: 25px;
+}
+
+b.ev {
+    font-weight: bolder;
+}
+
+/* Container for gallery */
+.gallery-container {
+    display: flex;
+    overflow-x: hidden;
+    padding: 30px 0;
+    scroll-behavior: smooth;
+    justify-content: center; 
+    margin: 0 10px 0 10px;
+    
+}
+
+/* Styling for the images */
+.gallery-container img {
+    width: 600px;
+    height: 250px;
+    margin-right: 16px;
+    border-radius: 8px; 
+}
+
+/* Arrow buttons to scroll left and right */
+.gallery-arrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.prev-btn, .next-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 17px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.prev-btn {
+    left: 29px;
+}
+
+.next-btn {
+    right: 25px;
+}
+
+/*
+|   FEATURED ARTWORK
+*/
+
+.navbar1 {
+    position: absolute;
+    left: 0;
+    width: 100%; 
+    height: 80px; 
+    background-color: black; 
+    display: flex;
+    align-items: center;
+    padding: 0 20px; 
+}
+
+.text {
+    margin: 0 10px 0 10px;
+    color: #ff516b;
+    font-size: 24px;
+    font-weight: bold;
+    flex: 1;
+}
+
+.art-wrapper {
+    margin: 110px 10px 50px 22px;
+}
+
+.art-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    max-width: none;
+    
+}
+
+.container {
+    width: 90%; 
+    margin: 0 auto; 
+}
+
+.art-post {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+    border-radius: 8px;
+}
+
+.art-post:hover {
+    transform: scale(1.03);
+}
+.art-post img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.art-info {
+    padding: 0 12px 0 12px;
+    font-size: 15px;
+    text-align: left;
+}
+
+p.art-des {
+    font-style: italic;
+}
+
+.art-info h2 {
+    padding: 5px;
+    font-family: "Raleway", serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+.btn-like {
+    background: none;
+    border: none;
+    padding-bottom: 15px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-like:hover {
+    color: #ff6b6b;
+}
+
+/* 
+|   UPLOAD
+*/
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(0,0,0,0.4); /* Black with transparency */
+    padding-top: 20px;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: black;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+/* Close button */
+.close {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(255, 222, 222);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar1 {
+    width: 100%; /* Make navbar take up the full width */
+    height: 80px; /* Set the navbar height */
+    background-color: black; /* Navbar background color */
+    display: flex;
+    align-items: center; /* Vertically center the text */
+    padding: 0 20px; /* Padding to ensure the text doesn't touch the edges */
+}
+
+
+.art-header {
+    color: white; /* Text color */
+    font-size: 24px; /* Font size */
+    font-weight: bold; /* Make the text bold */
+    flex: 1;
+    color: #ff6b6b; /* Allows the text container to adjust the width and stay aligned to the left */
+}
+.scrolling-text {
+    position: absolute;
+    top: 50%; /* Vertically center the text */
+    left: 100%; /* Start from the right side of the screen */
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap; /* Prevent the text from wrapping */
+    animation: scrollText 10s linear infinite; /* Scrolling effect */
+}
+
+/* Scrolling animation */
+@keyframes scrollText {
+    0% {
+        left: 100%; /* Start from the right */
+    }
+    100% {
+        left: -100%; /* End on the left side */
+    }
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modal-content.header {
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.upload-form input, .upload-form textarea, .upload-form select {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.submit-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #f94a4a;
+}
+
+.modal-content h2, label {
+    color: white;
+}
+
+/*
+| FOOTER
+*/
+
+.footer {
+    background-color: #000000;
+    color: rgb(236, 236, 236);
+    text-decoration: none;
+    position: absolute;
+    text-align: center;
+    padding: 7px;
+    left: 0;
+    width: 100%;
+}
+
+a.footer-link {
+    text-decoration:
+    none; color:white;
+}
+
+.footer a:hover{
+    color: #f94a4a;
+}
+
+@media screen and (max-width: 480px) {
+    .events-header {
+        font-size: 20px;
+    }
+    
+    .text {
+        font-size: 18px;
+    }
+
+    .btn-like {
+        font-size: 14px;
+    }
+}
